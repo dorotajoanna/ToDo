@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -54,12 +55,15 @@ public class FileHandler {
 			if (scanner.hasNext()) task.setCompletionDate(dateFormat.parse(scanner.next()));
 			}
 			
-		}
+		
 	  } catch (FileNotFoundException e) {
 		// should not happen at all
 		e.printStackTrace();
 	  } catch (IOException e) {
 		// problem with reading from file
+		e.printStackTrace();
+	} catch (ParseException e) {
+		// problem with parsing dates
 		e.printStackTrace();
 	}
 	   
