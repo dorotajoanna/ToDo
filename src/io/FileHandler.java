@@ -14,12 +14,21 @@ import java.util.Scanner;
 import model.SingleTask;
 
 public class FileHandler {
-	private File file;
 	
+    private File file;
 	DateFormat dateFormat;
 	
+	
+	public FileHandler() {
+		super();
+		
+	}
+
+	
+	
 	public ArrayList<SingleTask> readFromFile() {
-	  String line;	
+	  String line;
+	  ArrayList<SingleTask> taskList = new ArrayList<SingleTask>();
 	  file = new File("baza.txt");
 	  if (!file.exists()) {
 		  try {
@@ -36,7 +45,7 @@ public class FileHandler {
 		//create DateFormat for date parsing
 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 		//create new task list
-	    ArrayList<SingleTask> taskList = new ArrayList<SingleTask>();
+	    
 		while (line!=null) {
 			//create new task
 			SingleTask task = new SingleTask();

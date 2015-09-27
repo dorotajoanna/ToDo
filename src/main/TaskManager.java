@@ -32,16 +32,37 @@ public class TaskManager {
 		if (taskList.isEmpty()) {
 			System.out.println("Task list is empty");
 		} else {
-		System.out.println("title description creation deadline");	
+			// list tasks TODO na razie na chama
+		    System.out.println("number title description creation deadline");	
 		
-		for (SingleTask t : taskList) {
-			System.out.print(t.getTitle()+" "+t.getDescription()+" "+t.getCreationDate()+
+		    for (SingleTask t : taskList) {
+			    System.out.print(index+" "+t.getTitle()+" "+t.getDescription()+" "+t.getCreationDate()+
 					t.getDeadline());
-			if (t.isCompleted()) 
-				System.out.print("completed: "+t.getCompletionDate());
-			System.out.println("");
-		}
+			    if (t.isCompleted()) 
+			     	System.out.print("completed: "+t.getCompletionDate());
+			    System.out.println("");
+			    index++;
+		    }
 		}//else
+	}
+	
+	public int numberOfTasks(){
+		return taskList.size();
+	}
+	
+	public void listTaskNumber(int number){
+		try {
+			SingleTask task = taskList.get(number);
+			//list task TODO na razie na chama
+			System.out.println("task number: "+number);
+			System.out.println(task.getTitle()+" "+task.getDescription()+ " "+
+			     task.getCreationDate()+" "+task.getDeadline());
+			if (task.isCompleted()) 
+		     	System.out.print("completed: "+task.getCompletionDate());
+		}
+		catch (IndexOutOfBoundsException e) {
+			System.out.println("Wrong number - out of bounds: "+e);	
+		}
 	}
 
 }
