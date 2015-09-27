@@ -15,10 +15,10 @@ import model.SingleTask;
 
 public class FileHandler {
 	private File file;
-	private ArrayList<SingleTask> taskList;
+	
 	DateFormat dateFormat;
 	
-	public void checkFile() {
+	public ArrayList<SingleTask> readFromFile() {
 	  String line;	
 	  file = new File("baza.txt");
 	  if (!file.exists()) {
@@ -26,6 +26,7 @@ public class FileHandler {
 			file.createNewFile();
 		} catch (IOException e) {
 			System.out.println("B³¹d przy tworzeniu pliku: " + e.getMessage());
+			return null;
 		}
 	  }
 	  //file exists now lets read
@@ -34,6 +35,8 @@ public class FileHandler {
 		line = reader.readLine();
 		//create DateFormat for date parsing
 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+		//create new task list
+	    ArrayList<SingleTask> taskList = new ArrayList<SingleTask>();
 		while (line!=null) {
 			//create new task
 			SingleTask task = new SingleTask();
@@ -53,22 +56,45 @@ public class FileHandler {
 			if (scanner.hasNext()) task.setCompleted(scanner.next()=="true");
 			//completion date
 			if (scanner.hasNext()) task.setCompletionDate(dateFormat.parse(scanner.next()));
-			}
-			
-		
+			//add new task to the task list
+		    taskList.add(task);	
+		    //close the scanner
+		    scanner.close();
+		    //read next line
+		    line=reader.readLine();
+		}
+		//closing reader, returning task list
+		reader.close();
+		return  taskList;
 	  } catch (FileNotFoundException e) {
 		// should not happen at all
+		  System.out.println("File not found - can't happen at all");
 		e.printStackTrace();
+		return null;
 	  } catch (IOException e) {
 		// problem with reading from file
+		System.out.println("Exception while reading from file");  
 		e.printStackTrace();
+		return null;
 	} catch (ParseException e) {
 		// problem with parsing dates
+		System.out.println("Date parsing doesn't work properly");
 		e.printStackTrace();
+		return null;
 	}
+	 
 	   
 	}
 	
+	public boolean writeToFile(ArrayList<SingleTask> taskList) {
+		if (taskList.isEmpty()) {
+			// TODO czyszczenie pliku 
+		} else {
+			// TODO ³adny zapis do pliku
+		}
+		
+		return true;
+	}
 	
 	
 	
