@@ -21,7 +21,7 @@ public class TaskManager {
 			taskList.remove(number);
 		}
 		catch (IndexOutOfBoundsException e) {
-			System.out.println("Wrong number - out of bounds: "+e);
+			System.out.println("Wrong index - out of bounds: "+e);
 			return false;
 		}
 		return true;
@@ -33,7 +33,7 @@ public class TaskManager {
 			System.out.println("Task list is empty");
 		} else {
 			// list tasks TODO na razie na chama
-		    System.out.println("number title description creation deadline");	
+		    System.out.println("index title description creation deadline");	
 		
 		    for (SingleTask t : taskList) {
 			    System.out.print(index+" "+t.getTitle()+" "+t.getDescription()+" "+t.getCreationDate()+
@@ -61,7 +61,7 @@ public class TaskManager {
 		     	System.out.print("completed: "+task.getCompletionDate());
 		}
 		catch (IndexOutOfBoundsException e) {
-			System.out.println("Wrong number - out of bounds: "+e);	
+			System.out.println("Wrong index - out of bounds: "+e);	
 		}
 	}
 
